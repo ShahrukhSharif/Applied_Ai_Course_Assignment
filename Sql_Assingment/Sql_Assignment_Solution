@@ -72,6 +72,126 @@ Empty set (0.12 sec)
 
 Answer -3. 
 
+Answer -4.
+mysql> select * from (select n1.a1,n1.a2 from (select PID as a1,count(PID) as a2 from m_director md group by PID having a2>=10 order by a2 desc) n1) g1
+    -> inner join person p1 on  p1.pid = g1.a1
+    -> order by g1.a2 desc;
++-----------+----+-------+-----------+---------------------------+--------+
+| a1        | a2 | index | PID       | Name                      | Gender |
++-----------+----+-------+-----------+---------------------------+--------+
+| nm0223522 | 39 | 17942 | nm0223522 |  David Dhawan             |        |
+| nm0223522 | 39 | 37025 | nm0223522 | David Dhawan              |        |
+| nm0080315 | 35 |  9301 | nm0080315 |  Mahesh Bhatt             |        |
+| nm0080315 | 35 | 37177 | nm0080315 | Mahesh Bhatt              |        |
+| nm0890060 | 30 | 33281 | nm0890060 |  Ram Gopal Varma          |        |
+| nm0890060 | 30 | 37018 | nm0890060 | Ram Gopal Varma           |        |
+| nm0698184 | 30 | 37028 | nm0698184 | Priyadarshan              |        |
+| nm0080333 | 29 | 14849 | nm0080333 |  Vikram Bhatt             |        |
+| nm0080333 | 29 | 36990 | nm0080333 | Vikram Bhatt              |        |
+| nm0611531 | 27 | 20452 | nm0611531 |  Hrishikesh Mukherjee     |        |
+| nm0611531 | 27 | 36882 | nm0611531 | Hrishikesh Mukherjee      |        |
+| nm0007181 | 21 |  6392 | nm0007181 |  Yash Chopra              |        |
+| nm0007181 | 21 | 36956 | nm0007181 | Yash Chopra               |        |
+| nm0759662 | 19 | 33998 | nm0759662 |  Shakti Samanta           |        |
+| nm0154113 | 19 | 34760 | nm0154113 |  Basu Chatterjee          |        |
+| nm0759662 | 19 | 37208 | nm0759662 | Shakti Samanta            |        |
+| nm0154113 | 19 | 37286 | nm0154113 | Basu Chatterjee           |        |
+| nm0007131 | 18 |  6401 | nm0007131 |  Subhash Ghai             |        |
+| nm0007131 | 18 | 37087 | nm0007131 | Subhash Ghai              |        |
+| nm0122216 | 17 | 20506 | nm0122216 |  Abbas Alibhai Burmawalla |        |
+| nm0070867 | 17 | 36540 | nm0070867 |  Shyam Benegal            |        |
+| nm0122216 | 17 | 37039 | nm0122216 | Abbas Alibhai Burmawalla  |        |
+| nm0070867 | 17 | 37184 | nm0070867 | Shyam Benegal             |        |
+| nm0851253 | 17 | 37233 | nm0851253 | Rama Rao Tatineni         |        |
+| nm0220828 | 16 | 17943 | nm0220828 |  Manmohan Desai           |        |
+| nm0347899 | 16 | 18469 | nm0347899 |  Gulzar                   |        |
+| nm0802692 | 16 | 33833 | nm0802692 |  Raj N. Sippy             |        |
+| nm0347899 | 16 | 37182 | nm0347899 | Gulzar                    |        |
+| nm0802692 | 16 | 37211 | nm0802692 | Raj N. Sippy              |        |
+| nm0220828 | 16 | 37237 | nm0220828 | Manmohan Desai            |        |
+| nm0542498 | 15 |   934 | nm0542498 |  Mahesh Manjrekar         | Male   |
+| nm0438029 | 15 | 34861 | nm0438029 |  Raj Kanwar               |        |
+| nm0542498 | 15 | 37114 | nm0542498 | Mahesh Manjrekar          | Male   |
+| nm0438029 | 15 | 37307 | nm0438029 | Raj Kanwar                |        |
+| nm0764316 | 14 | 18002 | nm0764316 |  Rajkumar Santoshi        |        |
+| nm0712541 | 14 | 24875 | nm0712541 |  Rahul Rawail             |        |
+| nm0451846 | 14 | 26055 | nm0451846 |  Raj Khosla               |        |
+| nm0409791 | 14 | 33582 | nm0409791 |  Indra Kumar              |        |
+| nm0764316 | 14 | 37052 | nm0764316 | Rajkumar Santoshi         |        |
+| nm0409791 | 14 | 37089 | nm0409791 | Indra Kumar               |        |
+| nm0451846 | 14 | 37247 | nm0451846 | Raj Khosla                |        |
+| nm0712541 | 14 | 37281 | nm0712541 | Rahul Rawail              |        |
+| nm0440604 | 13 |  6007 | nm0440604 |  Anurag Kashyap           |        |
+| nm0004363 | 13 |  6427 | nm0004363 |  Rakesh Roshan            | Male   |
+| nm0536705 | 13 | 11107 | nm0536705 |  Ananth Narayan Mahadevan | Male   |
+| nm0007147 | 13 | 16387 | nm0007147 |  Dev Anand                | Male   |
+| nm0025629 | 13 | 17270 | nm0025629 |  Vijay Anand              |        |
+| nm0706484 | 13 | 32568 | nm0706484 |  K. Raghavendra Rao       |        |
+| nm0062614 | 13 | 34787 | nm0062614 |  Harry Baweja             |        |
+| nm0440604 | 13 | 36848 | nm0440604 | Anurag Kashyap            |        |
+| nm0004363 | 13 | 36926 | nm0004363 | Rakesh Roshan             | Male   |
+| nm0062614 | 13 | 37215 | nm0062614 | Harry Baweja              |        |
+| nm0025629 | 13 | 37265 | nm0025629 | Vijay Anand               |        |
+| nm0007147 | 13 | 37270 | nm0007147 | Dev Anand                 | Male   |
+| nm0536705 | 13 | 37423 | nm0536705 | Ananth Narayan Mahadevan  | Male   |
+| nm0706484 | 13 | 37475 | nm0706484 | K. Raghavendra Rao        |        |
+| nm0442479 | 12 |  5219 | nm0442479 |  Satish Kaushik           |        |
+| nm1055105 | 12 |  8483 | nm1055105 |  Madhur Bhandarkar        |        |
+| nm0422552 | 12 | 11935 | nm0422552 |  Prakash Jha              |        |
+| nm1460159 | 12 | 12630 | nm1460159 |  Rohit Shetty             |        |
+| nm0063357 | 12 | 16875 | nm0063357 |  Anees Bazmee             |        |
+| nm0788858 | 12 | 21051 | nm0788858 |  Anil Sharma              |        |
+| nm0474398 | 12 | 21246 | nm0474398 |  Nagesh Kukunoor          |        |
+| nm0576488 | 12 | 34251 | nm0576488 |  Prakash Mehra            |        |
+| nm0223485 | 12 | 34324 | nm0223485 |  Guddu Dhanoa             |        |
+| nm0576494 | 12 | 34864 | nm0576494 |  Umesh Mehra              |        |
+| nm1460159 | 12 | 36948 | nm1460159 | Rohit Shetty              |        |
+| nm1055105 | 12 | 36998 | nm1055105 | Madhur Bhandarkar         |        |
+| nm0788858 | 12 | 37012 | nm0788858 | Anil Sharma               |        |
+| nm0063357 | 12 | 37022 | nm0063357 | Anees Bazmee              |        |
+| nm0422552 | 12 | 37082 | nm0422552 | Prakash Jha               |        |
+| nm0474398 | 12 | 37093 | nm0474398 | Nagesh Kukunoor           |        |
+| nm0442479 | 12 | 37203 | nm0442479 | Satish Kaushik            |        |
+| nm0576488 | 12 | 37244 | nm0576488 | Prakash Mehra             |        |
+| nm0223485 | 12 | 37305 | nm0223485 | Guddu Dhanoa              |        |
+| nm0576494 | 12 | 37310 | nm0576494 | Umesh Mehra               |        |
+| nm0576559 | 11 |  9101 | nm0576559 |  Ketan Mehta              |        |
+| nm1887138 | 11 | 15624 | nm1887138 |  Mohit Suri               |        |
+| nm0348495 | 11 | 33460 | nm0348495 |  Sanjay Gupta             |        |
+| nm0403826 | 11 | 33748 | nm0403826 |  Nasir Hussain            |        |
+| nm0149850 | 11 | 34072 | nm0149850 |  Pramod Chakravorty       |        |
+| nm0631539 | 11 | 35083 | nm0631539 |  Govind Nihalani          |        |
+| nm0348495 | 11 | 36946 | nm0348495 | Sanjay Gupta              |        |
+| nm1887138 | 11 | 36981 | nm1887138 | Mohit Suri                |        |
+| nm0576559 | 11 | 37060 | nm0576559 | Ketan Mehta               |        |
+| nm0149850 | 11 | 37231 | nm0149850 | Pramod Chakravorty        |        |
+| nm0631539 | 11 | 37547 | nm0631539 | Govind Nihalani           |        |
+| nm0403826 | 11 | 37651 | nm0403826 | Nasir Hussain             |        |
+| nm0223606 | 10 |  2305 | nm0223606 |  Tigmanshu Dhulia         |        |
+| nm0004292 | 10 | 11775 | nm0004292 |  Raj Kapoor               | Male   |
+| nm0592803 | 10 | 13465 | nm0592803 |  Sudhir Mishra            |        |
+| nm0151504 | 10 | 18717 | nm0151504 |  N. Chandra               |        |
+| nm0080235 | 10 | 20204 | nm0080235 |  Vishal Bhardwaj          |        |
+| nm0576554 | 10 | 25982 | nm0576554 |  Hansal Mehta             |        |
+| nm0244892 | 10 | 33169 | nm0244892 |  J.P. Dutta               |        |
+| nm0695162 | 10 | 34013 | nm0695162 |  J. Om Prakash            |        |
+| nm0746950 | 10 | 34436 | nm0746950 |  Bimal Roy                |        |
+| nm0474837 | 10 | 34928 | nm0474837 |  Mehul Kumar              |        |
+| nm0080235 | 10 | 36851 | nm0080235 | Vishal Bhardwaj           |        |
+| nm0576554 | 10 | 36913 | nm0576554 | Hansal Mehta              |        |
+| nm0223606 | 10 | 36960 | nm0223606 | Tigmanshu Dhulia          |        |
+| nm0244892 | 10 | 36999 | nm0244892 | J.P. Dutta                |        |
+| nm0004292 | 10 | 37080 | nm0004292 | Raj Kapoor                | Male   |
+| nm0592803 | 10 | 37128 | nm0592803 | Sudhir Mishra             |        |
+| nm0613517 | 10 | 37195 | nm0613517 | K. Muralimohana Rao       |        |
+| nm0660967 | 10 | 37227 | nm0660967 | Pankaj Parashar           |        |
+| nm0052630 | 10 | 37273 | nm0052630 | K. Bapaiah                |        |
+| nm0151504 | 10 | 37308 | nm0151504 | N. Chandra                |        |
+| nm0695162 | 10 | 37341 | nm0695162 | J. Om Prakash             |        |
+| nm0474837 | 10 | 37368 | nm0474837 | Mehul Kumar               |        |
+| nm0746950 | 10 | 37379 | nm0746950 | Bimal Roy                 |        |
++-----------+----+-------+-----------+---------------------------+--------+
+
 
 
 
