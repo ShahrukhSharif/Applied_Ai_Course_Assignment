@@ -1,0 +1,77 @@
+Answer -1.
+
+mysql> select m1.title as movie_name,m1.c as year,p.name as director_name from (select RIGHT(year,4) as c,MID,title from movie) AS m1
+    -> inner join m_director md on md.mid = m1.mid
+    -> inner join person p on p.pid = md.pid
+    -> inner join m_genre mg on mg.mid = m1.mid
+    -> inner join genre g on g.gid = mg.gid
+    -> where ((m1.c%4=0 and m1.c%100!=0) or m1.c%400 =0) and g.gid=10;
++----------------------------------+------+------------------------+
+| movie_name                       | year | director_name          |
++----------------------------------+------+------------------------+
+| Navra Mazha Navsacha             | 2004 |  Sachin                |
+| Tere Bin Laden: Dead Or Alive    | 2016 |  Abhishek Sharma       |
+| Papa Kahte Hain                  | 1996 |  Mahesh Bhatt          |
+| Bumboo                           | 2012 |  Jagdish Rajpurohit    |
+| Kyaa Kool Hain Hum 3             | 2016 |  Umesh Ghadge          |
+| Kis Kis Ki Kismat                | 2004 |  Govind Menon          |
+| Daal Mein Kuch Kaala Hai         | 2012 |  Anand Balraj          |
+| Mastizaade                       | 2016 |  Milap Zaveri          |
+| Mr. Bechara                      | 1996 |  Bhagyaraj             |
+| Mr Bhatti on Chutti              | 2012 |  Karan Razdan          |
+| Saat Uchakkey                    | 2016 |  Sanjeev Sharma        |
+| Mere Dost Picture Abhi Baaki Hai | 2012 |  Rajnish Thakur        |
+| Challo Driver                    | 2012 |  Vickrant Mahajan      |
+| Let's Enjoy                      | 2004 |  Siddharth Anand Kumar |
+| Shaadi Ka Laddoo                 | 2004 |  Raj Kaushal           |
+| Ek Hota Vidushak                 | 1992 |  Jabbar Patel          |
+| Life Ki Toh Lag Gayi             | 2012 |  Rakesh Mehta          |
+| Mastizaade                       | 2016 | Milap Zaveri           |
+| Filmistaan                       | 2012 | Nitin Kakkar           |
+| Tere Bin Laden: Dead Or Alive    | 2016 | Abhishek Sharma        |
+| Kyaa Kool Hain Hum 3             | 2016 | Umesh Ghadge           |
+| Luv Shuv Tey Chicken Khurana     | 2012 | Sameer Sharma          |
+| Will You Marry Me                | 2012 | Aditya Datt            |
+| Papa Kahte Hain                  | 1996 | Mahesh Bhatt           |
+| Ab Ayega Mazaa                   | 1984 | Pankaj Parashar        |
+| Mr Bhatti on Chutti              | 2012 | Karan Razdan           |
+| Saat Uchakkey                    | 2016 | Sanjeev Sharma         |
+| Navra Mazha Navsacha             | 2004 | Sachin                 |
+| Maalamaal                        | 1988 | Kawal Sharma           |
+| Days of Tafree                   | 2016 | Krishnadev Yagnik      |
+| Kyaa Super Kool Hain Hum         | 2012 | Sachin Yardi           |
+| Mr. Bechara                      | 1996 | Bhagyaraj              |
+| Shaadi Ka Laddoo                 | 2004 | Raj Kaushal            |
+| Ek Hota Vidushak                 | 1992 | Jabbar Patel           |
+| Kis Kis Ki Kismat                | 2004 | Govind Menon           |
+| Mere Dost Picture Abhi Baaki Hai | 2012 | Rajnish Thakur         |
+| Bumboo                           | 2012 | Jagdish Rajpurohit     |
+| Motu Patlu: King of Kings        | 2016 | Suhas Kadav            |
+| Challo Driver                    | 2012 | Vickrant Mahajan       |
+| Paisa Vasool                     | 2004 | Srinivas Bhashyam      |
+| Life Ki Toh Lag Gayi             | 2012 | Rakesh Mehta           |
+| Daal Mein Kuch Kaala Hai         | 2012 | Anand Balraj           |
+| Let's Enjoy                      | 2004 | Siddharth Anand Kumar  |
++----------------------------------+------+------------------------+
+
+
+
+
+Answer -2.
+mysql> select * from (select * from movie where title = 'Anand') AS m1
+    -> inner join m_cast mc on mc.MID = m1.MID
+    -> inner join person p on p.pid = mc.pid;
+Empty set (0.13 sec)
+
+Check Again ---
+mysql> select * from m_cast mc
+    -> right outer join person p on p.pid = mc.pid
+    -> where mid = 'tt0066763';
+Empty set (0.12 sec)
+
+
+Answer -3. 
+
+
+
+
